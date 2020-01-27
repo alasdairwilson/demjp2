@@ -101,8 +101,9 @@ pro hv_dem2jp2,dem,details, aia_ind
   ; Clipping values and scaling function
   ;
   xh+='<derived_data>'+lf
-  xh+='<DEM_JP2GEN_VERSION>'+details.demjp2_version+'</DEM_JP2GEN_VERSION>'
-  xh+='<CONTACT_EMAIL>'+'alasdair.wilson@glasgow.ac.uk'+'</CONTACT_EMAIL>'
+  xh+='<DEM_JP2GEN_VERSION>'+details.demjp2_version+'</DEM_JP2GEN_VERSION>'+lf
+  xh+='<CONTACT_EMAIL>'+'alasdair.wilson@glasgow.ac.uk'+'</CONTACT_EMAIL>'+lf
+  xh+='<GITHUB>'+'https://github.com/alasdairwilson/demjp2'+'</GITHUB>'+lf
   xh+='<DERIVED_QUANTITY>DEM</DERIVED_QUANTITY>'+lf
   xh+='<DERIVATION_METHOD>Regularized Inversion - Hannah and Kontar (2012)</DERIVATION_METHOD>'+lf
   xh+='<DATA_PRODUCT>Temperature</DATA_PRODUCT>'+lf
