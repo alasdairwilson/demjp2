@@ -193,6 +193,10 @@ for i=0,n_obs-1 do begin
 
     ;rebin the dem
     dem_rebin=rebin(dem,[1024,1024,nt/2])
+    ;any negative data gets wiped
+;debug purposes we print
+    print,'number of < 0 elements =',n_elements(where(dem_rebin le 0))
+    dem_rebin[where(dem_rebin le 0)] = 0
 
     ;check jp2 directory
     ftest=file_test(jp2_dir,/directory)
@@ -201,7 +205,7 @@ for i=0,n_obs-1 do begin
     nimage=7
     for l=0,nimage-1 do begin
       
-      ;set up structure containing relevant parameters
+      ;set up structure containing relevant parameters for input to the header
       params={tbin1:logtemps(l*2),$
         tbin2:logtemps((l+1)*2),$
         jp2_dir:jp2_dir,$
@@ -218,10 +222,10 @@ for i=0,n_obs-1 do begin
         img:l+1,$
         nimage:nimage}
         
-      ;call dem_details for generating structure
+      ;call dem_details for generating structure containing header information
       details=dem_details(params)
       
-      ;make jp2k
+      ;make jp2000
       hv_dem2jp2,dem_rebin[*,*,l],details,ind(0)
     endfor
     
