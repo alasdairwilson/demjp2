@@ -190,13 +190,26 @@ for i=0,n_obs-1 do begin
     endfor
     ; Do DEM calculation
     dn2dem_pos_nb, data,edata,TRmatrix,tr_logt,temps,dem,edem,elogt,chisq,dn_reg,/timed,dem_norm0=dem_norm0
+    ;any negative data gets wiped
+    ;debug purposes we print
+    dem_neg=n_elements(where(dem lt 0))
+    print,'number of < 0 elements =',dem_neg-1,'  fraction of dem computed =',double(n_elements(dem gt 0))/16./1024./1024.  
+    for xx=0,nx-1 do begin
+      for yy =0,ny-1 do begin
+        for kk=0,nt-1 do begin
+          if (dem[xx,yy,kk] le 0) then begin
+            dem[xx,yy,*]=0
+            continue
+          endif
+        endfor
+      endfor
+    endfor
 
     ;rebin the dem
     dem_rebin=rebin(dem,[1024,1024,nt/2])
-    ;any negative data gets wiped
-;debug purposes we print
-    print,'number of < 0 elements =',n_elements(where(dem_rebin le 0))
-    dem_rebin[where(dem_rebin le 0)] = 0
+    ;sanity check there are no negative elements
+     print,'number of < 0 elements in final DEM bins =',n_elements(where(dem_rebin lt 0))-1
+     
 
     ;check jp2 directory
     ftest=file_test(jp2_dir,/directory)
