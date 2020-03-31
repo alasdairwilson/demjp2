@@ -21,7 +21,6 @@ function dem_details, dem_param
   tbin1:dem_param.tbin1,$
   tbin2:dem_param.tbin2,$
   nt:dem_param.nt,$
-  gauss_std:dem_param.gauss_std,$
   sat_lvl:dem_param.sat_lvl,$
   min_snr:dem_param.min_snr,$
   serr_per:dem_param.serr_per,$

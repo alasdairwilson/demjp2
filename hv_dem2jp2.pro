@@ -107,7 +107,6 @@ pro hv_dem2jp2,dem,details, aia_ind
   xh+='<DERIVED_QUANTITY>DEM</DERIVED_QUANTITY>'+lf
   xh+='<DERIVATION_METHOD>Regularized Inversion - Hannah and Kontar (2012)</DERIVATION_METHOD>'+lf
   xh+='<DATA_PRODUCT>Temperature</DATA_PRODUCT>'+lf
-  xh+='<DEM_JP2GEN_VERSION>0.9</DEM_JP2GEN_VERSION>'+lf
   xh+='<TEMP_RANGE_LOGT>'+HV_XML_COMPLIANCE(temp1)+'-'+HV_XML_COMPLIANCE(temp2)+'</TEMP_RANGE_LOGT>'+lf
   xh+='<TEMP_RANGE_K>'+HV_XML_COMPLIANCE(string(10^details.tbin1,FORMAT='(E8.2)'))+'-'+HV_XML_COMPLIANCE(string(10^details.tbin2,FORMAT='(E8.2)'))+'</TEMP_RANGE_K>'+lf
   xh+='<DEM_UNIT>'+HV_XML_COMPLIANCE(details.units)+'</DEM_UNIT>'+lf
